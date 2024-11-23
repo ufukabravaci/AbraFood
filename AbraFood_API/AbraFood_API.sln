@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbraFood_API", "AbraFood_API\AbraFood_API.csproj", "{5807CCDF-460C-44D2-A025-3FE1BDA99502}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5807CCDF-460C-44D2-A025-3FE1BDA99502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5807CCDF-460C-44D2-A025-3FE1BDA99502}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5807CCDF-460C-44D2-A025-3FE1BDA99502}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5807CCDF-460C-44D2-A025-3FE1BDA99502}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {19A0942F-A4B8-4A72-8296-36BDF69599A2}
+	EndGlobalSection
+EndGlobal
