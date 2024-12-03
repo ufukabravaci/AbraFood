@@ -113,7 +113,7 @@ namespace AbraFood_API.Migrations
 
                     b.HasIndex("ShoppingCartId");
 
-                    b.ToTable("CartItems");
+                    b.ToTable("CartItems", (string)null);
                 });
 
             modelBuilder.Entity("AbraFood_API.Models.MenuItem", b =>
@@ -146,7 +146,7 @@ namespace AbraFood_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MenuItems");
+                    b.ToTable("MenuItems", (string)null);
 
                     b.HasData(
                         new
@@ -281,7 +281,7 @@ namespace AbraFood_API.Migrations
 
                     b.HasIndex("OrderHeaderId");
 
-                    b.ToTable("OrderDetails");
+                    b.ToTable("OrderDetails", (string)null);
                 });
 
             modelBuilder.Entity("AbraFood_API.Models.OrderHeader", b =>
@@ -326,7 +326,7 @@ namespace AbraFood_API.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.ToTable("OrderHeaders");
+                    b.ToTable("OrderHeaders", (string)null);
                 });
 
             modelBuilder.Entity("AbraFood_API.Models.ShoppingCart", b =>
@@ -342,7 +342,7 @@ namespace AbraFood_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ShoppingCarts");
+                    b.ToTable("ShoppingCarts", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

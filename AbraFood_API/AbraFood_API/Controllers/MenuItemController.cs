@@ -6,6 +6,7 @@ using AbraFood_API.Utility;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -28,10 +29,12 @@ namespace AbraFood_API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetMenuItems()
         {
-            _response.Result = _db.MenuItems;
+            var menuItems = await _db.MenuItems.ToListAsync();
+            _response.Result = menuItems;
             _response.StatusCode = HttpStatusCode.OK;
             return Ok(_response);
         }
+
         [HttpGet("{id:int}",Name = "GetMenuItem")]
         public async Task<IActionResult> GetMenuItem(int id)
         {
