@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { menuItemModel } from "../../../Interfaces";
 import { Link } from "react-router-dom";
+import { useUpdateShoppingCartMutation } from "../../../Apis/shoppingCartApi";
+import { MiniLoader } from "../Common";
 
 interface Props {
   menuItem: menuItemModel;
 }
 
 function MenuItemCard(props: Props) {
+  const [isAddingToCart, setIsAddingToCart] = useState<boolean>(false);
+  const [updateShoppingCart] = useUpdateShoppingCartMutation();
+
+  const handleAddToCart = async (menuItemId: number) => {
+    setIsAddingToCart(true);
+    const response = await updateShoppingCart({
+      menuItemId: menuItemId,
+      updateQuantityBy: 1,
+      userId: "e7f98fbd-ec9c-41e2-8a0a-501d1f23e1de",
+    });
+    setIsAddingToCart(false);
+  };
+
   return (
     <div className="col-md-4 col-12 p-4">
       <div
@@ -42,24 +57,33 @@ function MenuItemCard(props: Props) {
               </i>
             )}
 
-          <i
-            className="bi bi-cart-plus btn btn-outline-danger"
-            style={{
-              position: "absolute",
-              top: "15px",
-              right: "15px",
-              padding: "5px 10px",
-              borderRadius: "3px",
-              outline: "none !important",
-              cursor: "pointer",
-            }}
-          ></i>
+          {isAddingToCart ? (
+            <>
+              <div style={{ position: "absolute", top: "15px", right: "15px" }}>
+                <MiniLoader/>
+              </div>
+            </>
+          ) : (
+            <i
+              onClick={() => handleAddToCart(props.menuItem.id)}
+              className="bi bi-cart-plus btn btn-outline-danger"
+              style={{
+                position: "absolute",
+                top: "15px",
+                right: "15px",
+                padding: "5px 10px",
+                borderRadius: "3px",
+                outline: "none !important",
+                cursor: "pointer",
+              }}
+            ></i>
+          )}
 
           <div className="text-center">
             <p className="card-title m-0 text-success fs-3">
-              <Link 
-              to={`/menuItemDetails/${props.menuItem.id}`}
-              style={{textDecoration: "none", color: "green"}}
+              <Link
+                to={`/menuItemDetails/${props.menuItem.id}`}
+                style={{ textDecoration: "none", color: "green" }}
               >
                 {props.menuItem.name}
               </Link>
