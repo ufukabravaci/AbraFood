@@ -10,7 +10,7 @@ const shoppingCartApi = createApi({
         
         getShoppingCart: builder.query({
             query: (userId) => ({
-                url:`shoppingCart`,
+                url:"shoppingCart",
                 params: {
                     userId: userId
                 }
