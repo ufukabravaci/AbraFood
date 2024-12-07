@@ -1,17 +1,22 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { menuItemReducer } from "./menuItemSlice";
-import { menuItemApi, shoppingCartApi } from "../../Apis";
+import { authApi, menuItemApi, shoppingCartApi } from "../../Apis";
 import { setShoppingCartReducer } from "./shoppingCartSlice";
+import { userAuthReducer } from "./userAuthSlice";
 
 
 const store = configureStore({
     reducer:{
         menuItemStore: menuItemReducer,
         shoppingCartStore: setShoppingCartReducer,
+        userAuthStore: userAuthReducer,
         [menuItemApi.reducerPath] : menuItemApi.reducer,
-        [shoppingCartApi.reducerPath]: shoppingCartApi.reducer
+        [shoppingCartApi.reducerPath]: shoppingCartApi.reducer,
+        [authApi.reducerPath]:authApi.reducer,
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(menuItemApi.middleware)
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+    .concat(menuItemApi.middleware)
+    .concat(authApi.middleware)
     .concat(shoppingCartApi.middleware),
 });
 

@@ -129,7 +129,7 @@ namespace AbraFood_API.Controllers
                     }
                     _response.StatusCode = HttpStatusCode.OK;
                     _response.IsSuccess = true;
-                    return Ok();
+                    return Ok(_response);
                 }
             }
             catch (Exception) { }

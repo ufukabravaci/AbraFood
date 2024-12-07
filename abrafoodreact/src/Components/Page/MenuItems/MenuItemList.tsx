@@ -23,7 +23,7 @@ function MenuItemList() {
       return <MainLoader/>
     }
   return (
-    <div className='container row'>
+    <div className='container d-flex flex-wrap justify-content-center align-items-center'>
       {data.result.length>0 && data.result.map((menuItem: menuItemModel, index: number) => (
         <MenuItemCard menuItem = {menuItem} key={index}/>
       ))
