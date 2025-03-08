@@ -12,17 +12,16 @@ namespace AbraFood_API.Models
         [Required]
         public string PickupPhoneNumber { get; set; }
         [Required]
-        public string PickupMail { get; set; }
-        public double OrderTotal { get; set; }
+        public string PickupEmail { get; set; }
 
-        
         public string ApplicationUserId { get; set; }
         [ForeignKey("ApplicationUserId")]
         public ApplicationUser User { get; set; }
+        public double OrderTotal { get; set; }
 
 
         public DateTime OrderDate { get; set; }
-        public string StripePaymentIntentId { get; set; }
+        public string StripePaymentIntentID { get; set; }
         public string Status { get; set; }
         public int TotalItems { get; set; }
 

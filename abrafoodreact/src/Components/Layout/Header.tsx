@@ -1,11 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import { useSelector, useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { RootState } from "../../Storage/Redux/store";
 import { cartItemModel, userModel } from "../../Interfaces";
-import { emptyUserState, setLoggedInUser } from "../../Storage/Redux/userAuthSlice";
+import {
+  emptyUserState,
+  setLoggedInUser,
+} from "../../Storage/Redux/userAuthSlice";
+import { SD_Roles } from "../../Utility/SD";
 
 let logo = require("../../Assets/Images/mango.png");
 
@@ -19,15 +23,12 @@ function Header() {
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
 
-  
   const handleLogout = () => {
     localStorage.removeItem("token");
-    dispatch(setLoggedInUser({...emptyUserState}));
+    dispatch(setLoggedInUser({ ...emptyUserState }));
     navigate("/");
-    
-  }
+  };
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
@@ -53,6 +54,54 @@ function Header() {
                   Home
                 </NavLink>
               </li>
+              {userData.role === SD_Roles.ADMIN ? (
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Admin Panel
+                  </a>
+                  <ul className="dropdown-menu">
+                    <li className="dropdown-item"
+                    onClick={() => navigate("menuItem/menuitemlist")}
+                    style={{ cursor: "pointer" }}
+                    >Menu Item</li>
+                    <li>
+                      <a
+                        className="dropdown-item"
+                        onClick={() => navigate("order/myorders")}
+                        style={{ cursor: "pointer" }}
+                      >
+                        My Orders
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        className="dropdown-item"
+                        onClick={() => navigate("order/allOrders")}
+                        style={{ cursor: "pointer" }}
+                      >
+                        All Orders
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              ) : (
+                <li className="nav-item">
+                  <NavLink
+                    className="nav-link"
+                    aria-current="page"
+                    to="/order/myorders"
+                  >
+                    Orders
+                  </NavLink>
+                </li>
+              )}
+
               <li className="nav-item">
                 <NavLink
                   className="nav-link"
@@ -63,34 +112,6 @@ function Header() {
                     {userData.id && `(${itemCount})`}
                   </i>
                 </NavLink>
-              </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Admin Panel
-                </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
               </li>
               <div className="d-flex" style={{ marginLeft: "auto" }}>
                 {userData.id && (

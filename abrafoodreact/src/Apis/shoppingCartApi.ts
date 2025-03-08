@@ -3,7 +3,7 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 const shoppingCartApi = createApi({
     reducerPath:"shoppingCartApi",
     baseQuery: fetchBaseQuery({
-        baseUrl : "https://abrafoodapi.azurewebsites.net/api/"
+        baseUrl : "https://redmangoapi.azurewebsites.net/api/"
     }),
     tagTypes: ["ShoppingCarts"],
     endpoints: (builder) => ({

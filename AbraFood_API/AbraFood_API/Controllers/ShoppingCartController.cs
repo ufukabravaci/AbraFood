@@ -24,7 +24,7 @@ namespace AbraFood_API.Controllers
         {
             try
             {
-                ShoppingCart shoppingCart;
+                ShoppingCart shoppingCart = new();
                 if (string.IsNullOrEmpty(userId)) // if empty or null return a empty cart
                 {
                     shoppingCart = new();

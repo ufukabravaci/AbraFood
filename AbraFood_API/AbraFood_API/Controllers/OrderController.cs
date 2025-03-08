@@ -75,6 +75,7 @@ namespace AbraFood_API.Controllers
                 _response.StatusCode = HttpStatusCode.NotFound;
                     return NotFound(_response);
                 }
+                _response.Result = orderHeaders;
                 _response.StatusCode = HttpStatusCode.OK;
                 return Ok(_response);
             }
@@ -95,12 +96,12 @@ namespace AbraFood_API.Controllers
                 OrderHeader order = new()
                 {
                     ApplicationUserId = orderHeaderDTO.ApplicationUserId,
-                    PickupMail = orderHeaderDTO.PickupMail,
+                    PickupEmail = orderHeaderDTO.PickupEmail,
                     PickupName = orderHeaderDTO.PickupName,
                     PickupPhoneNumber = orderHeaderDTO.PickupPhoneNumber,
                     OrderTotal = orderHeaderDTO.OrderTotal,
                     OrderDate = DateTime.Now,
-                    StripePaymentIntentId = orderHeaderDTO.StripePaymentIntentId,
+                    StripePaymentIntentID = orderHeaderDTO.StripePaymentIntentId,
                     TotalItems = orderHeaderDTO.TotalItems,
                     Status = String.IsNullOrEmpty(orderHeaderDTO.Status) ? SD.status_pending : orderHeaderDTO.Status,
                 };
@@ -163,9 +164,9 @@ namespace AbraFood_API.Controllers
                 {
                     orderFromDb.PickupPhoneNumber = orderHeaderUpdateDTO.PickupPhoneNumber;
                 }
-                if (!string.IsNullOrEmpty(orderHeaderUpdateDTO.PickupMail))
+                if (!string.IsNullOrEmpty(orderHeaderUpdateDTO.PickupEmail))
                 {
-                    orderFromDb.PickupMail = orderHeaderUpdateDTO.PickupMail;
+                    orderFromDb.PickupEmail = orderHeaderUpdateDTO.PickupEmail;
                 }
                 if (!string.IsNullOrEmpty(orderHeaderUpdateDTO.Status))
                 {
@@ -173,7 +174,7 @@ namespace AbraFood_API.Controllers
                 }
                 if (!string.IsNullOrEmpty(orderHeaderUpdateDTO.StripePaymentIntentId))
                 {
-                    orderFromDb.StripePaymentIntentId = orderHeaderUpdateDTO.StripePaymentIntentId;
+                    orderFromDb.StripePaymentIntentID = orderHeaderUpdateDTO.StripePaymentIntentId;
                 }
                 _db.SaveChanges();
                 _response.IsSuccess = true;

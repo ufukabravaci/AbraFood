@@ -11,7 +11,7 @@ namespace AbraFood_API.Models.Dto
         [Required]
         public string PickupPhoneNumber { get; set; }
         [Required]
-        public string PickupMail { get; set; }
+        public string PickupEmail { get; set; }
         public string ApplicationUserId { get; set; }
         public double OrderTotal { get; set; }
         public string StripePaymentIntentId { get; set; }
